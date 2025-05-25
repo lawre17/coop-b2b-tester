@@ -14,7 +14,7 @@ class CoopSimulatorService
 
         $payload = [
             'header' => [
-                'serviceName' => 'EldoretUniversity',
+                'serviceName' => 'DemoSchoolA',
                 'messageID' => Str::uuid()->toString(),
                 'connectionID' => 'UOE',
                 'connectionPassword' => '8786%$',
@@ -26,14 +26,16 @@ class CoopSimulatorService
             ]
         ];
 
-        return Http::post(env('VALIDATION_TARGET_URL'), $payload);
+        return Http::withHeaders([
+            'Content-Type' => 'application/json',
+        ])->post(env('VALIDATION_TARGET_URL'), $payload);
     }
 
     public function simulateIpn(array $validatedData)
     {
         $payload = [
             'header' => [
-                'serviceName' => 'EldoretUniversity',
+                'serviceName' => 'DemoSchoolA',
                 'messageID' => Str::uuid()->toString(),
                 'connectionID' => 'UOE',
                 'connectionPassword' => '8786%$',
@@ -47,10 +49,12 @@ class CoopSimulatorService
                 'PaymentCode' => '',
                 'PaymentMode' => '1',
                 'InstitutionCode' => '2100082',
-                'InstitutionName' => 'Eldoret University'
+                'InstitutionName' => 'Demo School A'
             ], $validatedData)
         ];
 
-        return Http::post(env('IPN_TARGET_URL'), $payload);
+        return Http::withHeaders([
+            'Content-Type' => 'application/json',
+        ])->post(env('IPN_TARGET_URL'), $payload);
     }
 }

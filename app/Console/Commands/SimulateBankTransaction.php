@@ -12,10 +12,11 @@ class SimulateBankTransaction extends Command
 
     public function handle(CoopSimulatorService $simulator)
     {
-        $reference = 'EDA/1140/13';
+        $reference = '4414';
         $this->info("Simulating validation for: $reference");
 
         $validationResponse = $simulator->simulateValidation($reference);
+
 
         if ($validationResponse['header']['statusCode'] === '200') {
             $this->info("Validation passed. Sending IPN...");
