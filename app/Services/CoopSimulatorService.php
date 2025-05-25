@@ -26,7 +26,7 @@ class CoopSimulatorService
             ]
         ];
 
-        return Http::post(config('app.validation_url'), $payload)->json();
+        return Http::post(env('VALIDATION_TARGET_URL'), $payload);
     }
 
     public function simulateIpn(array $validatedData)
@@ -51,6 +51,6 @@ class CoopSimulatorService
             ], $validatedData)
         ];
 
-        return Http::post(config('app.ipn_url'), $payload)->json();
+        return Http::post(env('IPN_TARGET_URL'), $payload);
     }
 }

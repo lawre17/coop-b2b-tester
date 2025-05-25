@@ -20,12 +20,14 @@ class SimulateBankTransaction extends Command
         if ($validationResponse['header']['statusCode'] === '200') {
             $this->info("Validation passed. Sending IPN...");
 
+            $amount = rand(500, 5000);
+
             $simulator->simulateIpn([
                 'TransactionReferenceCode' => 'TXN' . rand(10000, 99999),
-                'TotalAmount' => 100.00,
+                'TotalAmount' => $amount,
                 'DocumentReferenceNumber' => $reference,
                 'PaymentDate' => now()->toIso8601String(),
-                'PaymentAmount' => 100.00,
+                'PaymentAmount' => $amount,
                 'AdditionalInfo' => $reference,
                 'AccountNumber' => $reference,
                 'AccountName' => $validationResponse['response']['AccountName'] ?? '',
