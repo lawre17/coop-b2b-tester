@@ -38,7 +38,14 @@ VALIDATION_TARGET_URL=http://your-backend.test/api/{tenantID}/coop/validation
 IPN_TARGET_URL=http://your-backend.test/api/{tenantID}/coop/confirmation
 ```
 
-Replace `{tenantID}` with an actual tenant ID like `digi001`.
+Replace `{tenantID}` with an actual tenant ID like `001` in a case of multi-tenant application.
+
+> **Note:** If your backend is **not multi-tenant**, you can omit `{tenantID}` from the URLs. For example:
+>
+> ```env
+> VALIDATION_TARGET_URL=http://your-backend.test/api/coop/validation
+> IPN_TARGET_URL=http://your-backend.test/api/coop/confirmation
+> ```
 
 ---
 
